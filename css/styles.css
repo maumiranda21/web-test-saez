@@ -6,17 +6,17 @@
     
     --bg-body: #FFFFFF;
     --bg-surface: #FFFFFF;
-    --bg-light: #F8F9FA;
+    --bg-light: #F4F7FA;
     
     --text-main: #111827;
     --text-muted: #4B5563;
     --text-light: #FFFFFF;
     
-    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 15px 35px rgba(0, 90, 156, 0.25);
+    --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.04);
+    --shadow-hover: 0 15px 35px rgba(27, 54, 93, 0.15);
     
     --radius: 12px;
-    --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Modo Oscuro */
@@ -28,8 +28,8 @@ body.dark-theme {
     --text-main: #F3F4F6;
     --text-muted: #9CA3AF;
     
-    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.3);
-    --shadow-hover: 0 15px 35px rgba(0, 90, 156, 0.4);
+    --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 15px 35px rgba(0, 90, 156, 0.3);
 }
 
 /* Base */
@@ -50,12 +50,13 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
-/* Tipografía y Diagramación */
+/* Tipografía */
 h1, h2, h3 { 
-    color: var(--text-main); 
+    color: var(--primary); /* Títulos en el color corporativo */
     font-weight: 800; 
     line-height: 1.2; 
     margin-bottom: 24px;
+    transition: color var(--transition);
 }
 body.dark-theme h1, body.dark-theme h2, body.dark-theme h3 { color: var(--text-light); }
 
@@ -71,8 +72,9 @@ p {
 strong { color: var(--text-main); }
 
 .text-center { text-align: center; }
+.w-100 { width: 100%; }
 
-/* Layout y Espacios */
+/* Layout y Separación de Secciones */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -81,13 +83,26 @@ strong { color: var(--text-main); }
 .section { padding: 120px 0; }
 .section-extended { width: 100%; }
 
+/* Fondos y Texturas */
+.bg-surface { background-color: var(--bg-surface); }
 .bg-light { background-color: var(--bg-light); }
+.bg-dots {
+    background-color: var(--bg-light);
+    /* Textura de puntos elegante y sutil en CSS */
+    background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: 0 0;
+}
+body.dark-theme .bg-dots {
+    background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+}
 
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; margin-top: 60px; }
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 60px; }
+/* Grillas */
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 60px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; margin-top: 60px; }
 .align-center { align-items: center; }
 
-/* Componentes de Tarjetas e Imágenes */
+/* Tarjetas */
 .card {
     background: var(--bg-surface);
     border-radius: var(--radius);
@@ -98,13 +113,13 @@ strong { color: var(--text-main); }
 }
 .card-hover:hover { 
     box-shadow: var(--shadow-hover); 
-    transform: translateY(-8px); 
+    transform: translateY(-5px); 
 }
 
-/* Bordado a las imágenes (border) */
+/* Imágenes Sin Borde */
 .img-card { 
     padding: 0; 
-    border: 3px solid var(--secondary);
+    border: none; /* Borde eliminado */
     border-radius: 16px;
     overflow: hidden;
     position: relative;
@@ -117,7 +132,7 @@ strong { color: var(--text-main); }
     display: block; 
     transition: transform 0.6s ease; 
 }
-.img-card:hover img { transform: scale(1.08); }
+.img-card:hover img { transform: scale(1.05); }
 
 /* Navegación */
 .navbar {
@@ -140,14 +155,13 @@ body.dark-theme .navbar.relative-nav { border-bottom: 1px solid rgba(255,255,255
     justify-content: space-between;
     align-items: center;
 }
-/* Logos más grandes */
 #header-logo { height: 75px; transition: var(--transition); }
 #footer-logo { height: 110px; margin-bottom: 20px; filter: brightness(0) invert(1); }
 
 .nav-links { display: flex; align-items: center; gap: 40px; font-weight: 600; font-size: 1.1rem; list-style: none; }
 .nav-links a:hover { color: var(--secondary); }
 
-/* Listas con iconos */
+/* Listas con SVG Icon */
 ul.check-list { 
     list-style: none; 
     padding: 0; 
@@ -159,18 +173,20 @@ ul.check-list li {
     color: var(--text-main); 
     font-size: 1.15rem;
     position: relative;
-    padding-left: 45px;
+    padding-left: 40px;
 }
-/* Icono insertado en los items */
 ul.check-list li::before { 
-    content: "🛡️"; 
+    content: ""; 
     position: absolute; 
     left: 0; 
-    top: 0px; 
-    font-size: 1.3rem; 
+    top: 2px;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23005A9C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3Cpath d='m9 12 2 2 4-4'/%3E%3C/svg%3E");
+    background-size: cover;
 }
 
-/* Botones Principales - Delineados por defecto, Degradado al Hover */
+/* Botones Principales (Efecto Blur por defecto, Degradado sin borde en Hover) */
 .btn {
     display: inline-block;
     padding: 14px 32px;
@@ -178,19 +194,23 @@ ul.check-list li::before {
     font-weight: 700;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: var(--transition);
     text-align: center;
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    box-shadow: none;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    
+    /* Estado por defecto: Blur + borde delgado */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    transition: all 0.3s ease;
 }
 
 body.dark-theme .btn {
-    border: 2px solid var(--secondary);
+    background: rgba(13, 22, 31, 0.3);
+    border-color: var(--secondary);
     color: var(--text-main);
 }
 
@@ -201,24 +221,24 @@ body.dark-theme .btn {
     background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
     z-index: -1;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.3s ease;
 }
 
 .btn:hover {
-    color: white;
-    border-color: transparent;
+    border-color: transparent; /* Quita el borde visualmente */
+    color: white !important;
     box-shadow: var(--shadow-hover);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 .btn:hover::before {
-    opacity: 1;
+    opacity: 1; /* Revela el degradado */
 }
 
 .btn-large { padding: 18px 45px; font-size: 1.2rem; }
-.btn-nav { border-width: 2px; padding: 10px 25px; }
+.btn-nav { padding: 10px 25px; }
 
-/* Hero Section (Imagen clara, degradado abajo) */
+/* Hero Section */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -228,46 +248,48 @@ body.dark-theme .btn {
     position: relative;
     background: url('../assets/img/hero-bg.jpg') center/cover no-repeat;
 }
-/* Degradado inferior difuminado al color del fondo (claro u oscuro) */
 .hero::after {
     content: '';
     position: absolute;
     bottom: -2px; left: 0; right: 0;
-    height: 350px;
+    height: 200px;
     background: linear-gradient(to top, var(--bg-body) 0%, transparent 100%);
     z-index: 1;
     pointer-events: none;
     transition: background var(--transition);
 }
+
+/* Caja de hero eliminada, textos con sombra directa */
 .hero-content { 
     position: relative; 
     z-index: 2; 
     max-width: 900px;
-    background: rgba(255, 255, 255, 0.85); /* Caja de contraste muy sutil si la imagen lo requiere, o texto con sombra */
-    padding: 60px 40px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.5);
+    padding: 0 40px;
 }
-body.dark-theme .hero-content {
-    background: rgba(10, 17, 24, 0.85);
-    border-color: rgba(255,255,255,0.1);
+.hero-title, .hero-text {
+    color: #FFFFFF; /* Texto blanco para resaltar sobre foto */
+    text-shadow: 0 4px 16px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.8);
 }
-.hero-content h1 span { color: var(--secondary); }
+body.dark-theme .hero-title, body.dark-theme .hero-text {
+    color: #FFFFFF;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.9), 0 2px 5px #000000;
+}
+.hero-title span { color: #87C2FF; /* Un azul claro que combine con blanco */ }
 
 /* Utilidades */
-.section-title { font-size: 3rem; margin-bottom: 20px; }
-.section-subtitle { font-size: 1.4rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 50px auto; }
-.card-icon { font-size: 4rem; margin-bottom: 25px; }
+.section-title { font-size: 2.8rem; margin-bottom: 20px; }
+.section-subtitle { font-size: 1.3rem; color: var(--text-muted); max-width: 800px; margin: 0 auto 50px auto; }
+.card-icon { color: var(--primary); margin-bottom: 20px; display: inline-flex; }
+body.dark-theme .card-icon { color: var(--secondary); }
 
-/* Contact Form - Ancho y Estructurado */
+/* Contact Form */
 .contact-container { max-width: 900px; margin: 0 auto; }
 .contact-form { 
     display: flex; 
     flex-direction: column; 
     gap: 25px; 
     text-align: left;
-    padding: 60px;
+    padding: 50px;
 }
 .form-grid { 
     display: grid; 
@@ -276,23 +298,22 @@ body.dark-theme .hero-content {
 }
 input, select, textarea {
     width: 100%; 
-    padding: 18px 24px;
-    border: 2px solid rgba(0, 90, 156, 0.2); 
-    border-radius: 10px;
-    background: var(--bg-light); 
+    padding: 16px 20px;
+    border: 1px solid rgba(27, 54, 93, 0.2); 
+    border-radius: 8px;
+    background: transparent; 
     color: var(--text-main);
     font-family: inherit; 
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     transition: var(--transition);
 }
 body.dark-theme input, body.dark-theme select, body.dark-theme textarea {
-    border-color: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.15);
 }
 input:focus, select:focus, textarea:focus { 
     outline: none; 
     border-color: var(--secondary); 
-    background: var(--bg-surface); 
-    box-shadow: 0 0 0 5px rgba(0,90,156,0.1); 
+    box-shadow: 0 0 0 4px rgba(0,90,156,0.1); 
 }
 
 /* Footer */
@@ -308,7 +329,7 @@ body.dark-theme .footer { background-color: #050A10; }
 }
 .footer-links ul { list-style: none; }
 .footer-links ul li { margin-bottom: 15px; font-size: 1.1rem; }
-.footer-links a:hover { color: #74E291; /* Un color fresco al hover */ }
+.footer-links a:hover { color: #87C2FF; }
 .libro-logo { max-height: 90px; transition: var(--transition); }
 .libro-logo:hover { transform: scale(1.05); }
 .footer-bottom { text-align: center; font-size: 1rem; color: rgba(255,255,255,0.6); }
@@ -322,39 +343,49 @@ body.dark-theme .footer { background-color: #050A10; }
     right: 40px; 
     display: flex; 
     flex-direction: column; 
-    background: var(--bg-surface);
-    border: 2px solid rgba(0, 90, 156, 0.2);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(27, 54, 93, 0.1);
     border-radius: 40px;
     padding: 5px;
     box-shadow: var(--shadow-hover);
     z-index: 1001; 
     transition: var(--transition);
 }
-body.dark-theme .floating-controls { border-color: rgba(255,255,255,0.1); }
+body.dark-theme .floating-controls { 
+    background: rgba(17, 28, 39, 0.7);
+    border-color: rgba(255,255,255,0.1); 
+}
 .floating-controls .divider {
     height: 1px;
-    background: rgba(0, 90, 156, 0.1);
+    background: rgba(27, 54, 93, 0.1);
     margin: 5px 10px;
 }
+body.dark-theme .floating-controls .divider { background: rgba(255,255,255,0.1); }
+
 .float-btn { 
-    width: 55px; 
-    height: 55px; 
+    width: 50px; 
+    height: 50px; 
     border-radius: 50%; 
     border: none; 
     background: transparent; 
-    color: var(--text-main); 
-    font-size: 1.5rem; 
+    color: var(--primary); 
     cursor: pointer; 
     transition: var(--transition); 
     display: flex; 
     align-items: center; 
     justify-content: center; 
 }
+body.dark-theme .float-btn { color: var(--text-light); }
+
 .float-btn:hover { 
-    background: rgba(0, 90, 156, 0.1);
+    background: rgba(27, 54, 93, 0.05);
     color: var(--secondary); 
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
+body.dark-theme .float-btn:hover { background: rgba(255,255,255,0.05); }
+
 #scroll-top { 
     height: 0; 
     opacity: 0; 
@@ -364,7 +395,7 @@ body.dark-theme .floating-controls { border-color: rgba(255,255,255,0.1); }
     padding: 0;
 }
 #scroll-top.visible { 
-    height: 55px; 
+    height: 50px; 
     opacity: 1; 
     pointer-events: auto; 
 }
