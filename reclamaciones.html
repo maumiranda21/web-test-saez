@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libro de Reclamaciones | Saneamiento Ambiental EZ</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar relative-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/img/src-saez-logo_default.png" alt="Saneamiento Ambiental EZ Logo" id="header-logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Volver al Inicio</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="section bg-light">
+        <div class="container">
+            <h1 class="text-center">Libro de Reclamaciones</h1>
+            <p class="text-center">Conforme al Código de Protección y Defensa del Consumidor, contamos con un Libro de Reclamaciones a tu disposición.</p>
+            
+            <form class="card card-hover claim-form mt-4">
+                <h3>1. Identificación del Consumidor Reclamante</h3>
+                <div class="form-grid">
+                    <input type="text" placeholder="Nombre(s) y Apellidos / Razón Social" required>
+                    <select required>
+                        <option value="" disabled selected>Tipo de Documento</option>
+                        <option value="dni">DNI</option>
+                        <option value="ce">Carné de Extranjería</option>
+                        <option value="ruc">RUC</option>
+                    </select>
+                    <input type="text" placeholder="Número de Documento" required>
+                    <input type="tel" placeholder="Teléfono / Celular" required>
+                    <input type="email" placeholder="Correo Electrónico" required>
+                    <input type="text" placeholder="Domicilio (Dirección Completa)" required class="full-width">
+                </div>
+
+                <h3>2. Identificación del Bien Contratado</h3>
+                <div class="form-grid">
+                    <label class="radio-label"><input type="radio" name="tipo_bien" value="producto" required> Producto</label>
+                    <label class="radio-label"><input type="radio" name="tipo_bien" value="servicio"> Servicio</label>
+                    <textarea placeholder="Descripción del servicio contratado o bien adquirido" rows="3" required class="full-width"></textarea>
+                </div>
+
+                <h3>3. Detalle de la Reclamación y Pedido</h3>
+                <div class="form-grid">
+                    <label class="radio-label"><input type="radio" name="tipo_queja" value="reclamo" required> Reclamo (Disconformidad con el bien o servicio)</label>
+                    <label class="radio-label"><input type="radio" name="tipo_queja" value="queja"> Queja (Disconformidad con la atención)</label>
+                    <textarea placeholder="Detalle de la reclamación/queja" rows="4" required class="full-width"></textarea>
+                    <textarea placeholder="Pedido (Lo que solicitas como solución)" rows="3" required class="full-width"></textarea>
+                </div>
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-accent btn-large">Enviar Reclamación</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
